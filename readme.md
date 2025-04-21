@@ -1,39 +1,39 @@
-# GSAP 風格文字動畫展示
+# GSAP-Style Text Animation Demo
 
-此專案展示了一個精緻的文字載入動畫效果，使用了 CSS 3D 變換和過渡效果來實現每個字母從底部翻轉上來的動態效果。雖然專案標題提到 GSAP，但本實現使用了純 CSS 轉場效果和 JavaScript 來控制動畫時序。
+This project showcases an elegant text loading animation effect, using CSS 3D transforms and transitions to create a dynamic effect where each letter flips up from the bottom. Although the project title mentions GSAP, this implementation uses pure CSS transitions and JavaScript to control animation timing.
 
-## 專案重點
+## Project Highlights
 
-1. 實現流暢的文字動態載入效果，每個字母逐一翻轉顯示
-2. 動畫展現流暢性與創意，並注重細節（如時間控制、緩動曲線、視覺層次感）
-3. 使用 CSS 3D 轉換實現引人注目的翻轉效果
-4. 使用 Poppins 字體 `<link rel="stylesheet" href="https://use.typekit.net/pxc5lqp.css">`
+1. Implementation of smooth text loading effects with individual letter flip animations
+2. Animation demonstrates fluidity and creativity, with attention to details (timing control, easing curves, visual layering)
+3. Uses CSS 3D transforms to create eye-catching flip effects
+4. Uses Poppins font `<link rel="stylesheet" href="https://use.typekit.net/pxc5lqp.css">`
 
-## 設計思路
+## Design Approach
 
-本專案使用深色背景和白色文字營造強烈對比，以引人注目的 3D 翻轉動畫展現「Team Taiwan!」的標語，呈現台灣精神。
+This project uses a dark background with white text to create strong contrast, presenting the "Team Taiwan!" slogan with attention-grabbing 3D flip animations that embody the Taiwanese spirit.
 
-## 技術實現
+## Technical Implementation
 
-- **HTML** - 基本頁面結構
-- **CSS** - 3D 轉換、過渡效果和視覺樣式
-- **JavaScript** - 動態生成文字元素、控制動畫時序和使用 Intersection Observer 觸發動畫
+- **HTML** - Basic page structure
+- **CSS** - 3D transforms, transition effects, and visual styling
+- **JavaScript** - Dynamic text element generation, animation timing control, and using Intersection Observer to trigger animations
 
-## 實現細節
+## Implementation Details
 
-- **背景處理**：使用黑色背景和背景圖片 `g-pic.png` 作為視覺元素
-- **動畫時序**：每個字母有 0.03 秒的延遲，使用 cubic-bezier 曲線實現流暢過渡
-- **3D 效果**：使用 `transform: translate3d(80px, 50px, -300px) scaleY(0.01) rotateX(-90deg) rotate(-35deg)` 實現字母從底部翻轉而出的效果
-- **智能載入**：使用 Intersection Observer 監測元素可見性，只在元素進入視窗時觸發動畫
+- **Background Treatment**: Uses a black background and the background image `g-pic.png` as a visual element
+- **Animation Timing**: Each letter has a 0.03-second delay, using a cubic-bezier curve for smooth transitions
+- **3D Effects**: Uses `transform: translate3d(80px, 50px, -300px) scaleY(0.01) rotateX(-90deg) rotate(-35deg)` to create the effect of letters flipping up from the bottom
+- **Smart Loading**: Uses Intersection Observer to monitor element visibility, triggering animations only when elements enter the viewport
 
-## 文字內容
+## Text Content
 
-展示的文字為：
+The displayed text is:
 
 ```
 "Team Taiwan! Team Taiwan! Taiwan is a great country!"
 ```
 
-## 使用方法
+## How to Use
 
-直接開啟 index.html 文件，進入頁面即可看到動畫效果。
+Simply open the index.html file in a browser to see the animation effect.

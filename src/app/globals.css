@@ -1,0 +1,11 @@
+@import url("https://use.typekit.net/pxc5lqp.css");
+@import "tailwindcss";
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+.letter {
+  opacity: 0;
+  transform: translateY(30px);
+  display: inline-block;
+}

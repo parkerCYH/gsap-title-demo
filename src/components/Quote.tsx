@@ -31,17 +31,15 @@ const Quote: React.FC<QuoteProps> = ({ text, className = "" }) => {
   const chars = [`\u201C`, ...text.split(""), `\u201D`]; // 加上頭尾雙引號
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-black text-white">
-      <div
-        ref={quoteRef}
-        className={`text-4xl font-semibold leading-snug text-center ${className}`}
-      >
-        {chars.map((char, index) => (
-          <span key={index} className="letter inline-block">
-            {char === " " ? "\u00A0" : char}
-          </span>
-        ))}
-      </div>
+    <div
+      ref={quoteRef}
+      className={`text-white text-[48px]  max-w-[720px] text-center ${className}`}
+    >
+      {chars.map((char, index) => (
+        <span key={index} className="letter inline-block">
+          {char === " " ? "\u00A0" : char}
+        </span>
+      ))}
     </div>
   );
 };

@@ -2,8 +2,20 @@
 @import "tailwindcss";
 
 body {
-  font-family: "Poppins", sans-serif;
+  background: #000000;
+  opacity: 1;
+  font-family: "Poppins";
 }
+
+main {
+  background: transparent url("/asset/g-pic.png") 0 0 no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  opacity: 1;
+}
+
 .letter {
   opacity: 0;
   transform: translateY(30px);

@@ -1,17 +1,19 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 
 interface QuoteProps {
   text: string;
   className?: string;
 }
+const START_QUOTE = "\u201C";
+const END_QUOTE = "\u201D";
 
 const Quote: React.FC<QuoteProps> = ({ text, className = "" }) => {
   const quoteRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const letters = quoteRef.current?.querySelectorAll(".letter");
     if (letters) {
       gsap.fromTo(
@@ -28,7 +30,7 @@ const Quote: React.FC<QuoteProps> = ({ text, className = "" }) => {
     }
   }, [text]);
 
-  const chars = [`\u201C`, ...text.split(""), `\u201D`]; // 加上頭尾雙引號
+  const chars = [START_QUOTE, ...text.split(""), END_QUOTE]; // 加上頭尾雙引號
 
   return (
     <div

@@ -15,9 +15,3 @@ main {
   height: 100vh;
   opacity: 1;
 }
-
-.letter {
-  opacity: 0;
-  transform: translateY(30px);
-  display: inline-block;
-}

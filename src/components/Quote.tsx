@@ -1,44 +1,62 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { cn } from "@/utils/cn";
 
 interface QuoteProps {
   text: string;
-  className?: string;
 }
 const START_QUOTE = "\u201C";
 const END_QUOTE = "\u201D";
 
-const Quote: React.FC<QuoteProps> = ({ text, className = "" }) => {
+const Quote = ({ text }: QuoteProps) => {
   const quoteRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const letters = quoteRef.current?.querySelectorAll(".letter");
     if (letters) {
       gsap.fromTo(
         letters,
-        { opacity: 0, y: 30 },
+        {
+          x: 80,
+          y: 50,
+          z: -300,
+          rotateX: -90,
+          rotate: -35,
+          scaleY: 0.01,
+        },
         {
           opacity: 1,
+          x: 0,
           y: 0,
-          stagger: 0.05,
-          duration: 0.6,
-          ease: "power2.out",
+          z: 0,
+          rotateX: 0,
+          rotate: 0,
+          scaleY: 1,
+          stagger: {
+            each: 0.03,
+          },
         }
       );
     }
   }, [text]);
-
-  const chars = [START_QUOTE, ...text.split(""), END_QUOTE]; // 加上頭尾雙引號
-
+  const chars = [START_QUOTE, ...text.split(""), END_QUOTE];
   return (
     <div
       ref={quoteRef}
-      className={`text-white text-[48px]  max-w-[720px] text-center ${className}`}
+      className="text-left relative text-white text-[48px] max-w-[720px] "
     >
       {chars.map((char, index) => (
-        <span key={index} className="letter inline-block">
+        <span
+          key={index}
+          className={cn(
+            "letter inline-block transform-3d origin-[0%_100%] transition-all duration-[1200] ease-[cubic-bezier(0.245, 0.495, 0, 0.99)] ",
+            "opacity-0",
+            // index === 0 && "absolute left-[-25px]"
+            "first:absolute first:left-[-25px]"
+          )}
+        >
           {char === " " ? "\u00A0" : char}
         </span>
       ))}

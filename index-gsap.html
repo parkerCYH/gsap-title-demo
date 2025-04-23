@@ -3,14 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quote Animation</title>
+    <title>Quote Animation GSAP</title>
     <link rel="stylesheet" href="https://use.typekit.net/pxc5lqp.css" />
     <style>
-      html:not(.disable-motion) .in-view .fx-letter {
-        transform: translate3d(0, 0, 0) scaleY(1) rotateX(0) rotate(0);
-        opacity: 1;
-      }
-
       body {
         background: #000000;
         opacity: 1;
@@ -64,14 +59,9 @@
     <script>
       const target = document.getElementById("quote");
       const text = "Team Taiwan! Team Taiwan! Taiwan is a great country!";
-      let letterCount = 1;
 
       const startQuote = document.createElement("span");
-      startQuote.classList.add(
-        "fx-letter",
-        `fx-letter--${letterCount++}`,
-        "start-quote"
-      );
+      startQuote.classList.add("fx-letter", "start-quote");
       startQuote.textContent = "“";
       target.appendChild(startQuote);
 
@@ -81,10 +71,9 @@
 
         [...word].forEach((char) => {
           const letterSpan = document.createElement("span");
-          letterSpan.classList.add("fx-letter", `fx-letter--${letterCount}`);
+          letterSpan.classList.add("fx-letter");
           letterSpan.textContent = char;
           wordSpan.appendChild(letterSpan);
-          letterCount++;
         });
 
         target.appendChild(wordSpan);
@@ -92,36 +81,33 @@
       });
 
       const endQuote = document.createElement("span");
-      endQuote.classList.add(
-        "fx-letter",
-        `fx-letter--${letterCount}`,
-        "end-quote"
-      );
+      endQuote.classList.add("fx-letter", "end-quote");
       endQuote.textContent = "”";
       target.appendChild(endQuote);
 
-      // GSAP 動畫
-      gsap.set(".fx-letter", {
-        transform:
-          "translate3d(80px, 50px, -300px) scaleY(.01) rotateX(-90deg) rotate(-35deg)",
-      });
-
-      // 滾動進場觸發動畫
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            gsap.to(".fx-letter", {
-              transform: "translateZ(0) scaleY(1) rotateX(0) rotate(0)",
-              stagger: 0.015,
-              duration: 0.3,
-              ease: "cubic-bezier(0.245, 0.495, 0, 0.99)",
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      });
-
-      observer.observe(target);
+      gsap.fromTo(
+        ".fx-letter",
+        {
+          opacity: 0,
+          x: 80,
+          y: 50,
+          rotateX: -90,
+          scaleY: 0.1,
+          transformPerspective: 1000, // 添加透視感
+          transformOrigin: "center bottom",
+        },
+        {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          rotateX: 0,
+          scaleY: 1,
+          ease: "cubic-bezier(0.245, 0.495, 0, 0.99)",
+          stagger: {
+            amount: 1.2, // 或用 amount 也可以
+          },
+        }
+      );
     </script>
   </body>
 </html>

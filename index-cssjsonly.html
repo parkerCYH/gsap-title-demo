@@ -6,11 +6,6 @@
     <title>Quote Animation JS CSS only</title>
     <link rel="stylesheet" href="https://use.typekit.net/pxc5lqp.css" />
     <style>
-      html:not(.disable-motion) .in-view .fx-letter {
-        transform: translate3d(0, 0, 0) scaleY(1) rotateX(0) rotate(0);
-        opacity: 1;
-      }
-
       body {
         background: #000000;
         opacity: 1;
@@ -51,6 +46,10 @@
         transition: all 1.2s cubic-bezier(0.245, 0.495, 0, 0.99);
         opacity: 0;
       }
+      .in-view .fx-letter {
+        transform: translate3d(0, 0, 0) scaleY(1) rotateX(0) rotate(0);
+        opacity: 1;
+      }
 
       .start-quote,
       .end-quote {
@@ -87,8 +86,7 @@
           letterSpan.classList.add("fx-letter", `fx-letter--${letterCount}`);
           letterSpan.textContent = char;
 
-          // transition-delay：依照編號遞增
-          const delay = (letterCount - 1) * _delay; // 0.04s 一個字母
+          const delay = (letterCount - 1) * _delay;
           letterSpan.style.transitionDelay = `${delay}s`;
 
           wordSpan.appendChild(letterSpan);
@@ -110,7 +108,6 @@
       endQuote.textContent = "”";
       target.appendChild(endQuote);
 
-      // Intersection Observer：觀察 quote 區塊
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {

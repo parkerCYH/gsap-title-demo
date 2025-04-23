@@ -41,7 +41,8 @@
         display: inline-block;
         transform-origin: 0 100%;
         transform-style: preserve-3d;
-        opacity: 1;
+        transition: all 1.2s cubic-bezier(0.245, 0.495, 0, 0.99);
+        opacity: 0;
       }
 
       .start-quote,
@@ -65,19 +66,11 @@
       startQuote.textContent = "“";
       target.appendChild(startQuote);
 
-      text.split(" ").forEach((word) => {
-        const wordSpan = document.createElement("span");
-        wordSpan.classList.add("fx-word");
-
-        [...word].forEach((char) => {
-          const letterSpan = document.createElement("span");
-          letterSpan.classList.add("fx-letter");
-          letterSpan.textContent = char;
-          wordSpan.appendChild(letterSpan);
-        });
-
-        target.appendChild(wordSpan);
-        target.appendChild(document.createTextNode(" "));
+      text.split("").forEach((char) => {
+        const letterSpan = document.createElement("span");
+        letterSpan.classList.add("fx-letter");
+        letterSpan.textContent = char === " " ? "\u00A0" : char;
+        target.appendChild(letterSpan);
       });
 
       const endQuote = document.createElement("span");
@@ -88,23 +81,23 @@
       gsap.fromTo(
         ".fx-letter",
         {
-          opacity: 0,
           x: 80,
           y: 50,
+          z: -300,
           rotateX: -90,
-          scaleY: 0.1,
-          transformPerspective: 1000, // 添加透視感
-          transformOrigin: "center bottom",
+          rotate: -35,
+          scaleY: 0.01,
         },
         {
           opacity: 1,
           x: 0,
           y: 0,
+          z: 0,
           rotateX: 0,
+          rotate: 0,
           scaleY: 1,
-          ease: "cubic-bezier(0.245, 0.495, 0, 0.99)",
           stagger: {
-            amount: 1.2, // 或用 amount 也可以
+            each: 0.03,
           },
         }
       );

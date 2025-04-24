@@ -1,71 +1,55 @@
-# Text Animation Demo - Multiple Implementations
+# 文字載入動畫展示：三種實作方式
 
-This project showcases an elegant text loading animation effect using three different implementation approaches. Each version creates a dynamic effect where letters flip up from the bottom with a 3D transformation.
+本專案展示了一段精緻且富有創意的文字載入動畫，靈感來自國際知名開發團隊 Dogstudio 的網站案例，並以「Team Taiwan! Team Taiwan! Taiwan is a great country!」這段文字作為主題，實現動畫的細緻度與視覺衝擊感。
 
-## Project Highlights
+為了探索不同技術在動畫表現上的可能性，本專案分別以 **純 CSS/JS**、**GSAP**、以及 **Next.js + React + GSAP** 三種方式實作相同動畫概念，呈現文字由下方翻轉進場的 3D 效果。
 
-1. Implementation of smooth text loading effects with individual letter flip animations
-2. Animation demonstrates fluidity and creativity, with attention to details (timing control, easing curves, visual layering)
-3. Uses 3D transforms to create eye-catching flip effects
-4. Uses Poppins font `<link rel="stylesheet" href="https://use.typekit.net/pxc5lqp.css">`
+---
 
-## Available Versions
+## 🧪 三種版本說明
 
-This repository contains three different implementations of the same animation concept:
+### 1. `index-cssjsonly.html`：純 CSS/JS 實作
 
-1. **Pure CSS/JS Version** (`index-cssjsonly.html`) - Uses CSS 3D transforms and transitions with vanilla JavaScript
-2. **GSAP Version** (`index-gsap.html`) - Implements the same effect using the GreenSock Animation Platform
-3. **Next.js + React + GSAP Version** - A modern implementation using React components within a Next.js framework
+- 使用 CSS transition 與 `cubic-bezier` 緩動實現動畫
+- JavaScript 動態產生文字元素
+- 配合 Intersection Observer 觸發動畫
 
-## Design Approach
+### 2. `index-gsap.html`：GSAP 實作
 
-All versions use a dark background with white text to create strong contrast, presenting the "Team Taiwan!" slogan with attention-grabbing 3D flip animations that embody the Taiwanese spirit.
+- 使用 GSAP 的 fromTo 實現動畫順序控制
+- 更細緻的動畫
+- 相較 CSS/JS 更具可控性與擴充性
 
-## Technical Implementation
+### 3. `Next.js + React + GSAP`
 
-### 1. Pure CSS/JS Version
+- 現代框架組合，提升可維護性與模組化
+- 結合 React 組件與 GSAP 動畫邏輯
+- 適用於實際專案中大型動畫應用場景
 
-- Uses CSS transitions with cubic-bezier timing functions
-- Implements animation timing via staggered transition delays
-- JavaScript dynamically generates the text elements
-- Intersection Observer triggers the animations when the content becomes visible
+---
 
-### 2. GSAP Version
+## 🔍 技術細節
 
-- Leverages GSAP's animation capabilities
-- Uses GSAP's stagger functionality for sequencing
-- Provides more precise animation control
-- Maintains the same visual effect with improved animation management
+- **動畫觸發機制**：使用 Intersection Observer 判斷元素進入視口時啟動動畫
+- **動畫時間控制**：
+  - CSS/JS：每個字母延遲 0.03 秒進場
+  - GSAP：使用 stagger，延遲 0.015 秒，並加入自定義 easing
+    start quote 的 position 與 design 完美符合，讓換行時文字垂直置左對齊，十分美觀
+    在 next 版本中引入字型使用 @import url("https://use.typekit.net/pxc5lqp.css") 確保與 design 一致
+    導入 cn 讓 class 更易讀
 
-### 3. Next.js + React + GSAP Version
+---
 
-- Component-based approach with React
-- Server-side rendering capabilities via Next.js
-- Combines the animation power of GSAP with modern web frameworks
-- Improved code organization and maintainability
+## 🧪 使用方式
 
-## Implementation Details
+### CSS/JS 與 GSAP 版本：
 
-- **Background Treatment**: Uses a black background and the background image `g-pic.png` as a visual element
-- **Animation Effect**:
-  - CSS Version: Each letter has a 0.03-second delay with CSS transitions
-  - GSAP Version: Uses GSAP's stagger (0.015s) with custom easing
-- **3D Transform**: `translate3d(80px, 50px, -300px) scaleY(0.01) rotateX(-90deg) rotate(-35deg)` creates the effect of letters flipping up from the bottom
-- **Smart Loading**: All versions use Intersection Observer to trigger animations when content enters the viewport
+- 直接打開對應 HTML 檔案即可觀看動畫
 
-## Text Content
+### Next.js + React + GSAP 版本：
 
-All versions display the same text:
-
+```bash
+pnpm install       # 安裝相依套件
+pnpm dev           # 啟動開發伺服器
+http://localhost:3000  # 開啟頁面預覽動畫
 ```
-"Team Taiwan! Team Taiwan! Taiwan is a great country!"
-```
-
-## How to Use
-
-- **CSS/JS & GSAP Versions**: Simply open the respective HTML file in a browser
-- **Next.js Version**: Follow these steps:
-  1. Ensure Node.js is installed
-  2. Run `npm install` to install dependencies
-  3. Run `npm run dev` to start the development server
-  4. Open `http://localhost:3000` in your browser

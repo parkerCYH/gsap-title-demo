@@ -30,13 +30,13 @@
 
 ## 🔍 技術細節
 
-- **動畫觸發機制**：使用 Intersection Observer 判斷元素進入視口時啟動動畫
+- **動畫觸發**：所有版本均採用 Intersection Observer API，當目標元素進入瀏覽器可視範圍時，才會開始播放文字載入動畫，優化效能。
 - **動畫時間控制**：
   - CSS/JS：每個字母延遲 0.03 秒進場
-  - GSAP：使用 stagger，延遲 0.015 秒，並加入自定義 easing
-    start quote 的 position 與 design 完美符合，讓換行時文字垂直置左對齊，十分美觀
-    在 next 版本中引入字型使用 @import url("https://use.typekit.net/pxc5lqp.css") 確保與 design 一致
-    導入 cn 讓 class 更易讀
+  - GSAP：使用 stagger，延遲 0.015 秒
+- **文字排版優化**：
+  - 文字排版經過細緻調整，確保在文字換行時，後續文字能夠垂直置左對齊，呈現更美觀的視覺效果。
+  - 在 Next.js 版本中，透過 `@import url()` 引入了指定的字體 (`https://use.typekit.net/pxc5lqp.css`)，確保頁面字體與設計稿保持一致。
 
 ---
 
